@@ -324,28 +324,35 @@
             window.open(link, "_blank");
         }
 
-        function handleFormSubmit(event) {
-            event.preventDefault();
-            const form = event.target;
+function handleFormSubmit(event) {
+    event.preventDefault();
 
-            // Replace this with your FormSubmit endpoint
-            const formAction = "https://formsubmit.co/swaminibhandare10@gmail.com";
+    const form = event.target;
 
+    // Convert form data to JSON
+    const formData = Object.fromEntries(new FormData(form));
 
-            const formData = new FormData(form);
-            fetch(formAction, {
-                method: "POST",
-                body: formData,
-            })
-                .then(() => {
-                    alert("Email sent successfully!");
-                    form.reset();
-                })
-                .catch(() => {
-                    alert("Failed to send email.");
-                });
+    fetch("https://formsubmit.co/ajax/swaminibhandare10@gmail.com", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        },
+        body: JSON.stringify(formData)
+    })
+    .then(response => {
+        if (response.ok) {
+            alert("✅ Email sent successfully!");
+            form.reset();
+        } else {
+            alert("❌ Something went wrong!");
         }
-
+    })
+    .catch(error => {
+        console.error(error);
+        alert("❌ Failed to send email.");
+    });
+}
 
 
     // Dark/Light Mode Toggle
@@ -368,6 +375,8 @@
             localStorage.setItem('theme', 'light');
         }
     });
+
+    
 </script>
 <!-- ...existing code... -->
 </body>
