@@ -1,4 +1,6 @@
-
+body {
+  overflow-x: hidden;
+}
 
 /* Theme Toggle Button */
 .theme-toggle {
@@ -257,7 +259,13 @@ body {
   object-fit: cover;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
-
+.about-section h2 {
+  text-align: center;
+  font-size: clamp(2rem, 5vw, 2.5rem);
+  padding-top: 40px;
+  margin-bottom: 40px;
+  font-weight: 700;
+}
 .about-content {
   flex: 1;
 }
@@ -406,8 +414,9 @@ font-size: clamp(2rem, 5vw, 2.5rem);
 }
 
 .project-card {
-  width: 480px; 
-  height: 390px; 
+   width: 100%;
+  max-width: 350px;
+  height: 250px; 
   position:relative;
   overflow: hidden;
   border-radius: 15px;
@@ -416,7 +425,17 @@ font-size: clamp(2rem, 5vw, 2.5rem);
   background: #f9f9f9;
 }
 
+body.dark-mode .nav-links {
+  background: #111;
+}
 
+body.dark-mode .nav-links li a {
+  color: #fff;
+}
+
+body.dark-mode .menu-icon {
+  color: #fff;
+}
 
 .project-card img {
   width: 100%;
@@ -554,9 +573,9 @@ font-size: clamp(2rem, 5vw, 2.5rem);
   color: #bbb;
 }
 
-/* Responsive Navbar & Layout */
 @media (max-width: 991px) {
   .hero {
+    gap: 5px; /* tighter spacing on mobile */
     flex-direction: column;
     text-align: center;
     padding: 60px 5%;
@@ -605,43 +624,53 @@ font-size: clamp(2rem, 5vw, 2.5rem);
     display: block;
   }
 }
-
 @media (max-width: 768px) {
-  .about-grid {
+   
+  /* Hero */
+  .hero {
+    gap: 5px; /* tighter spacing on mobile */
     flex-direction: column;
     text-align: center;
   }
 
+  .hero-left h1 {
+    margin-bottom: 10px;
+    font-size: 1.8rem;
+  }
+
+  /* About */
+  .about-img img {
+    width: 100%;
+    height: auto;
+  }
+
+  /* Skills */
+  .skills-track,
+  .skills-track1 {
+    animation: none; /* stop animation on mobile */
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .skill-card {
+    width: 120px;
+  }
+
+  /* Projects */
   .projects-grid {
     flex-direction: column;
     align-items: center;
   }
 
-  .project-card {
-    width: 95%;
-    height: 220px;
-  }
-
-  .footer h3 {
-    font-size: 20px;
-  }
-
-  .footer p {
-    font-size: 14px;
-  }
-
-  .social-icons a {
-    font-size: 18px;
-    margin: 0 8px;
-  }
-
-  .contact-form input,
-  .contact-form textarea {
-    font-size: 14px;
-  }
-
-  .contact-form .btn {
+  /* Navbar */
+  .nav-links {
     width: 100%;
+    left: 0;
+    right: 0;
   }
- 
+
+  /* Buttons */
+  .buttons {
+    justify-content: center;
+  }
 }
